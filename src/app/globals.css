@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #08090B;
+  --surface: #101216;
+  --surface-2: #171A1F;
+  --fg: #F4F2ED;
+  --muted: #8B919C;
+  --rule: #23272E;
+  --acid: #CCFF3D;
+  --coral: #FF6A45;
+  --azure: #5AC8FF;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-acid: var(--acid);
+  --color-coral: var(--coral);
+  --color-azure: var(--azure);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+  --font-body: var(--font-body);
+}
+
+* { border-color: var(--rule); box-sizing: border-box; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
+}
+
+section { scroll-margin-top: 4rem; }
+
+::selection { background: var(--acid); color: #08090B; }
+
+/* Faint engineering grid behind the whole page */
+.grid-field {
+  background-image:
+    linear-gradient(to right, var(--rule) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--rule) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 55% at 50% 0%, #000 20%, transparent 78%);
+}
+
+.display {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.92;
+}
+
+.mono {
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+.label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Marquee */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: slide 42s linear infinite;
+}
+.marquee-mask {
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+@keyframes slide {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Link underline that wipes in */
+.wipe {
+  background-image: linear-gradient(var(--acid), var(--acid));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 2px;
+  transition: background-size 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.wipe:hover { background-size: 100% 2px; }
+
+.trend-draw {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: draw 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+.rise {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: rise 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+@keyframes rise { to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .rise { opacity: 1; transform: none; }
+}
