@@ -226,9 +226,14 @@ export const education = [
 ];
 
 export const certifications = [
-  { name: "Google BigQuery & GCP Badges", issuer: "Google", status: "Completed" },
+  { name: "BigQuery for Data Analysts", issuer: "Google", status: "Completed" },
+  { name: "Agentic AI: From Learner To Builder", issuer: "IBM", status: "Complete" },
+  { name: "Deloitte Australia - Data Analytics Job Simulation", issuer: "Forage", status: "Complete" },
+  { name: "EY Technology Risk Job Simulation", issuer: "Forage", status: "Complete" },
   { name: "Machine Learning Using Python", issuer: "Simplilearn", status: "Complete" },
   { name: "Introduction to Data Visualization", issuer: "Simplilearn", status: "Complete" },
+
+
 ];
 
 export const leadership = [
